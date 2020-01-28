@@ -23,14 +23,14 @@ class RedirectIfAuthenticated
               return redirect()->route('admin.dashboard');
             }
             break;
-         case 'student' :
+         case 'campus' :
           if (Auth::guard($guard)->check()) {
-              return redirect()->route('student.dashboard');
+              return redirect()->route('campus.dashboard');
           }
           break;
-          case 'super_admin' :
+          case 'president' :
           if (Auth::guard($guard)->check()) {
-              return redirect()->route('super_admin.dashboard');
+              return redirect()->route('president.dashboard');
           }
           break;
           default:

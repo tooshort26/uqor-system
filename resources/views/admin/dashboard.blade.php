@@ -1,5 +1,6 @@
 @extends('admin.layouts.dashboard-template')
-@section('title','Dashboard')
+@section('page-small-title','Dashboard')
+@section('page-title','Overview')
 @section('content')
 
 @endsection

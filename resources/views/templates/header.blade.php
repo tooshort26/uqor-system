@@ -1,27 +1,16 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
-        <title>{{ config('app.name') }}  | @yield('title')</title>
-        <!-- Styles -->
-        
-        <!-- Custom fonts for this template-->
-        <link rel="stylesheet" href="{{URL::asset('vendor/fontawesome-free/css/all.min.css')}}">
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-        <!-- Custom styles for this template-->
-        <link href="{{URL::asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
-           <style>
-            .bg-login-image {
-                background:url({{URL::asset('img/undraw_login_jdch.svg')}}) center center; 
-                background-size: cover;
-            }
-        </style>
-    </head>
-        <body id="page-top">
-             <!-- Page Wrapper -->
-  <div id="wrapper">
+<html class="no-js h-100" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>University Quarterly Online Reporting System | @yield('page-title')</title>
+    <meta name="description" content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="{{URL::asset('styles/shards-dashboards.1.1.0.min.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('styles/extras.1.1.0.min.css')}}">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
+  <body class="h-100">

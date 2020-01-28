@@ -52,21 +52,21 @@ return [
            'driver' => 'token',
            'provider' => 'admins',
        ],
-       'student' => [
+       'campus' => [
            'driver' => 'session',
-           'provider' => 'students',
+           'provider' => 'campuses',
        ],
-       'student-api' => [
+       'campus-api' => [
            'driver' => 'token',
-           'provider' => 'students',
+           'provider' => 'campuses',
        ],
-       'super_admin' => [
+       'president' => [
            'driver' => 'session',
-           'provider' => 'super_admins',
+           'provider' => 'presidents',
        ],
-       'super_admin-api' => [
+       'president-api' => [
            'driver' => 'token',
-           'provider' => 'super_admins',
+           'provider' => 'presidents',
        ]
     ],
 
@@ -96,13 +96,13 @@ return [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
         ],
-        'students' => [
+        'campuses' => [
             'driver' => 'eloquent',
-            'model' => App\Student::class,
+            'model' => App\Campus::class,
         ],
-        'super_admins' => [
+        'presidents' => [
             'driver' => 'eloquent',
-            'model' => App\SuperAdmin::class,
+            'model' => App\President::class,
         ],
    
     ],
@@ -134,13 +134,13 @@ return [
             'table' => 'password_resets',
             'expire' => 15,
         ],
-        'students' => [
-            'provider' => 'students',
+        'campus' => [
+            'provider' => 'campuses',
             'table' => 'password_resets',
             'expire' => 15,
         ],
-        'super_admins' => [
-            'provider' => 'super_admins',
+        'president' => [
+            'provider' => 'presidents',
             'table' => 'password_resets',
             'expire' => 15,
         ],

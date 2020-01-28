@@ -3,8 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Session;
 
 class Handler extends ExceptionHandler
 {
@@ -62,12 +63,12 @@ class Handler extends ExceptionHandler
             $login = 'admin.auth.login';
             break;
             
-         case 'student':
-            $login = 'student.auth.login';
+         case 'campus':
+            $login = 'campus.auth.login';
             break;
 
-        case 'super_admin':
-            $login = 'super_admin.auth.login';
+        case 'president':
+            $login = 'president.auth.login';
             break;
 
             
@@ -75,6 +76,9 @@ class Handler extends ExceptionHandler
             $login = 'login';
             break;
         }
-        return redirect()->guest(route($login));
+        
+        Session::forget('url.intented');
+        return redirect()->route($login);
+        // return redirect()->guest(route($login));
     }
 }
