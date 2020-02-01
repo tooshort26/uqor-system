@@ -32,6 +32,18 @@
                   <span>Dashboard</span>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('forms.create') }}">
+                  <i class="material-icons">view_module</i>
+                  <span>Upload Form</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('campus.index') }}">
+                  <i class="material-icons">school</i>
+                  <span>Campuses</span>
+                </a>
+              </li>
             </ul>
           </div>
         </aside>

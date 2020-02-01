@@ -17,7 +17,7 @@ class CampusSeeder extends Seeder
 			'name'     => 'Campus Doe',
 			'address'  => 'Tandag City',
 			'approved' => 1,
-			'password' => bcrypt('password')
+			'password' => 'password'
         ]);
     }
 }

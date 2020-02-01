@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFormsTable extends Migration
+class CreateCampusFormTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateFormsTable extends Migration
      */
     public function up()
     {
-        Schema::create('forms', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title');
-            $table->text('description');
-            $table->timestamp('deadline')->nullable();
-            $table->enum('quarter', [1, 2, 3, 4]);
-            $table->string('link');
+        Schema::create('campus_form', function (Blueprint $table) {
+            $table->integer('campus_id');
+            $table->integer('form_id');
             $table->timestamps();
+            $table->primary(['campus_id', 'form_id']);
         });
     }
 
@@ -31,6 +28,6 @@ class CreateFormsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forms');
+        Schema::dropIfExists('campus_form');
     }
 }

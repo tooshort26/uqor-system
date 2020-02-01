@@ -7,5 +7,6 @@
 <script src="{{URL::asset('scripts/extras.1.1.0.min.js')}}"></script>
 <script src="{{URL::asset('scripts/shards-dashboards.1.1.0.min.js')}}"></script>
 <script src="{{URL::asset('scripts/app/app-blog-overview.1.1.0.js')}}"></script>
+@stack('page-scripts')
 </body>
 </html>

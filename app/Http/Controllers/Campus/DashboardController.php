@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Campus;
 
-use Illuminate\Http\Request;
+use App\Campus;
+use App\Form;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -19,7 +22,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('campus.dashboard');
+        $forms = Form::whereYear('created_at',date('Y'))->get();
+        $campusSubmittedForm = Campus::with(['forms' => function ($query) {
+            $query->whereYear('forms.created_at', date('Y'));
+        }, 'forms:id'])->find(Auth::user()->id);
+        
+        $campusSubmittedFormIds = $campusSubmittedForm->forms->pluck('id')->toArray();
+
+        return view('campus.dashboard', compact('forms', 'campusSubmittedFormIds'));
     }
+
   
 }

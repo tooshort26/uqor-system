@@ -19,7 +19,7 @@ class CreateCampusesTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('password');
-            $table->integer('approved');
+            $table->integer('approved')->default(0);
             $table->timestamps();
         });
     }
