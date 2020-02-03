@@ -56,11 +56,12 @@ class SMSController extends Controller
         $messageClient = new MessageApi($apiClient);
 
 
-         new SendMessageRequest([
+         $messageRequest = new SendMessageRequest([
                 'phoneNumber' => $request->phone_number,
                 'message' => $request->message,
                 'deviceId' => config('sms.deviceId'),
          ]);
+         $sendMessages = $messageClient->sendMessages([$messageRequest]);
          return redirect()->back()->with('success', 'Succesfully send a message to ' . $request->phone_number);
     }
 
