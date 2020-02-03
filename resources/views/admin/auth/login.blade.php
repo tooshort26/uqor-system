@@ -21,13 +21,13 @@
                                         </div>
                                         {{ csrf_field() }}
                                         <div class="text-center mb-4">
-                                            <img width="150" src="{{URL::asset('images/sdssu.png')}}" alt="">
+                                            <img width="150" src="https://res.cloudinary.com/dpcxcsdiw/image/upload/v1580730503/university_app/sdssu.png" alt="">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" name="email" id="emailAddress" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user font-weight-bold" name="email" id="emailAddress" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="password" id="userPassword" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user font-weight-bold" name="password" id="userPassword" placeholder="Password">
                                         </div>
                                       {{--   <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

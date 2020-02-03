@@ -11,7 +11,7 @@ class Campus extends Authenticatable
 {
 	use Notifiable;
 
-    protected $fillable = ['email', 'name', 'address', 'approved', 'password'];
+    protected $fillable = ['email', 'name', 'address', 'approved', 'password',  'profile'];
 
     protected $hidden = [
     	'password'

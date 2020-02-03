@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Campus;
+namespace App\Http\Controllers\Admin;
 
-use App\Form;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use SMSGatewayMe\Client\ApiClient;
+use SMSGatewayMe\Client\Api\MessageApi;
+use SMSGatewayMe\Client\Configuration;
+use SMSGatewayMe\Client\Model\SendMessageRequest;
 
-class SubmitFormController extends Controller
+class SMSController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:campus');
+        $this->middleware('auth:admin');
     }
     /**
      * Display a listing of the resource.
@@ -20,7 +22,7 @@ class SubmitFormController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.sms.index');
     }
 
     /**
@@ -30,7 +32,7 @@ class SubmitFormController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -41,7 +43,25 @@ class SubmitFormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+       $this->validate($request, [
+        'phone_number' => 'required',
+        'message'      => 'required'
+      ]);
+
+        // Configure client
+        $config = Configuration::getDefaultConfiguration();
+        $config->setApiKey('Authorization', config('sms.token'));
+        $apiClient = new ApiClient($config);
+        $messageClient = new MessageApi($apiClient);
+
+
+         new SendMessageRequest([
+                'phoneNumber' => $request->phone_number,
+                'message' => $request->message,
+                'deviceId' => config('sms.deviceId'),
+         ]);
+         return redirect()->back()->with('success', 'Succesfully send a message to ' . $request->phone_number);
     }
 
     /**
@@ -61,18 +81,9 @@ class SubmitFormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Form $campus_form)
+    public function edit($id)
     {
-        return view('campus.forms.submit-form', compact('campus_form'));
-    }
-
-    public function upload(Request $request, string $link)
-    {
-        if ($request->has('files')) {
-            $destination =  public_path() . '/campus_forms/' . md5(Auth::user()->name) .'_' . $link;
-            move_uploaded_file($request->file('files')[0], $destination);
-            return response()->json(['success' => true]);
-        }
+        //
     }
 
     /**
@@ -82,15 +93,9 @@ class SubmitFormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Form $campus_form)
+    public function update(Request $request, $id)
     {
-        if (!$campus_form->deadline->isPast()) {
-            $campus_form->campus()->attach(Auth::user()->id);
-            return redirect()->to('/campus/dashboard')->with('success', 'Succesfully submit form');
-        } else {
-           return rredirect()->to('/campus/dashboard')->withErrors(['message' => 'The form submission is already deadline.']);
-        }
-        
+        //
     }
 
     /**

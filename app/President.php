@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class President extends Authenticatable
 {
 	use Notifiable;
-    protected $fillable = ['email', 'name', 'address'];
+    protected $fillable = ['email', 'name', 'address',  'profile'];
 
     protected $hidden = [
     	'password'

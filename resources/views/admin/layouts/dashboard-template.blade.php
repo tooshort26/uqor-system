@@ -27,21 +27,29 @@
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="/">
+                <a class="nav-link active" href="/admin">
                   <i class="material-icons">dashboard</i>
                   <span>Dashboard</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('forms.create') }}">
-                  <i class="material-icons">view_module</i>
-                  <span>Upload Form</span>
-                </a>
-              </li>
+             
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('campus.index') }}">
                   <i class="material-icons">school</i>
                   <span>Campuses</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('forms.index') }}">
+                  <i class="material-icons">view_module</i>
+                  <span>Forms</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('sms.index') }}">
+                  <i class="material-icons">message</i>
+                  <span>SMS</span>
                 </a>
               </li>
             </ul>
@@ -95,14 +103,14 @@
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img class="user-avatar rounded-circle mr-2" src="{{ URL::asset('images/avatars/0.jpg') }}" alt="User Avatar">
+                    <img class="user-avatar rounded-circle mr-2" src="{{ URL::asset('images/user_images/' . Auth::user()->profile) }}" alt="User Avatar">
                     <span class="d-none d-md-inline-block text-capitialize">{{ Auth::user()->name }}</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.html">
-                      <i class="material-icons">&#xE7FD;</i> Profile</a>
+                    <a class="dropdown-item font-weight-bold" href="{{ route('admin.profile.edit') }}">
+                      <i class="material-icons">&#xE7FD;</i> Account Setting</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" style="cursor:pointer;" onclick="event.preventDefault();
+                    <a class="dropdown-item text-danger font-weight-bold" style="cursor:pointer;" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
                       <i class="material-icons text-danger">&#xE879;</i> Logout </a>
                        <form id="logout-form" action="{{ route('admin.auth.logout') }}" method="POST" style="display: none;">

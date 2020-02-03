@@ -20,7 +20,10 @@ class FormController extends Controller
      */
     public function index()
     {
-        //
+        $forms = Form::orderBy('created_at', 'DESC')->get()->groupBy(function (Form $form) {
+            return $form->created_at->format('Y') . '_' . $form->created_at->quarter;
+        });
+        return view('admin.forms.index', compact('forms'));
     }
 
     /**
@@ -74,6 +77,12 @@ class FormController extends Controller
             move_uploaded_file($request->file('files')[0], $destination);
             return response()->json(['success' => true]);
         }
+    }
+
+    public function downloadForm(string $filename)
+    {
+        $pathToFile =  public_path() . '/admin_forms/' . $filename;
+        return response()->download($pathToFile);
     }
 
     /**

@@ -27,8 +27,8 @@
       </div>
 
       <div class="form-group">
-        <label>Deadline <u class='font-weight-bold'>{{ \Carbon\Carbon::parse(\Carbon\Carbon::now())->format('F d, Y') }}</u> to : </label>
-        <input type="date" name='deadline' class='form-control font-weight-bold'>  
+        <label>Deadline <u class='font-weight-bold'>{{ \Carbon\Carbon::now()->format('F d, Y') }}</u> to : </label>
+        <input type="date" name='deadline' class='form-control font-weight-bold' min="{{ Carbon\Carbon::now()->addDay(1)->format('Y-m-d') }}">  
       </div>
 
       <div class="form-group">

@@ -19,6 +19,7 @@ class CreatePresidentsTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('password');
+            $table->string('profile')->default('no-image-icon.png');
             $table->timestamps();
         });
     }

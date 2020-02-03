@@ -4,13 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Campus;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Repository\FormRepository;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function __construct()
+    private $formRepository;
+
+    public function __construct(FormRepository $formRepo)
     {
         $this->middleware('auth:admin',['only' => 'index','edit']);
+        $this->formRepository = $formRepo;
+        // dd($this->formRepository->remindSubmission());
     }
     /**
      * Display a listing of the resource.

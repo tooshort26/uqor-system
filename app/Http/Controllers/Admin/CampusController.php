@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Campus;
+use App\Form;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -50,9 +51,13 @@ class CampusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Campus $campus)
+    public function show(int $id)
     {
-        dd($campus);
+        $campus = Campus::with('forms')->find($id);
+        $groupByQuarter = $campus->forms->groupBy(function (Form $form) {
+            return $form->created_at->format('Y') . '-' . $form->created_at->quarter;
+        });
+        return view('admin.campus.show', compact('campus', 'groupByQuarter'));
     }
 
     /**

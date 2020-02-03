@@ -20,7 +20,7 @@
                                         
 
                                         <div class="text-center">
-                                            <img width="150" src="{{URL::asset('images/sdssu.png')}}" alt="">
+                                            <img width="150" src="https://res.cloudinary.com/dpcxcsdiw/image/upload/v1580730503/university_app/sdssu.png" alt="">
                                         </div>
 
                                         <h3>Request an account</h3>
@@ -29,28 +29,28 @@
 
                                         <label>Email Address</label>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" name="email" id="emailAddress" aria-describedby="emailHelp" placeholder="Enter Email Address..." value="{{ old('email') }}">
+                                            <input type="email" class="form-control form-control-user font-weight-bold" name="email" id="emailAddress" aria-describedby="emailHelp" placeholder="Enter Email Address..." value="{{ old('email') }}">
                                         </div>
 
                                         <label>Campus Name</label>
                                         <div class="form-group">
-                                            <input type="text" name="name" class='form-control form-control-user' placeholder="Enter your Campus name" value="{{ old('name') }}">
+                                            <input type="text" name="name" class='form-control form-control-user font-weight-bold' placeholder="Enter your Campus name" value="{{ old('name') }}">
                                         </div>
                                         
                                         <label>Campus Address</label>
                                         <div class="form-group">
-                                            <textarea name='address' class='form-control form-control-user' placeholder="Enter address">{{ old('address') }}</textarea>
+                                            <textarea name='address' class='form-control form-control-user font-weight-bold' placeholder="Enter address">{{ old('address') }}</textarea>
                                         </div>
 
                                         <label>Password</label>
                                         <div class='form-group'>
-                                            <input type="password" class='form-control form-control-user' name="password" placeholder="Enter your password">
+                                            <input type="password" class='form-control form-control-user font-weight-bold' name="password" placeholder="Enter your password">
                                         </div>
 
 
                                         <label>Re-type Password</label>
                                         <div class='form-group'>
-                                            <input type="password" class='form-control form-control-user' name="password_confirmation" placeholder="Re-type your password">
+                                            <input type="password" class='form-control form-control-user font-weight-bold' name="password_confirmation" placeholder="Re-type your password">
                                         </div>
 
                                         <div class="text-right">

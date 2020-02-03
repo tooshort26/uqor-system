@@ -44,7 +44,7 @@
 @push('page-scripts')
 <script src="https://transloadit.edgly.net/releases/uppy/v1.8.0/uppy.min.js"></script>
 <script>
-  let endPoint = "{{ route('campus-form-upload') }}"
+  let endPoint = "{{ route('campus-form-upload', [$campus_form->link]) }}"
   var uppy = Uppy.Core()
       .use(Uppy.Dashboard, {
           inline: true,

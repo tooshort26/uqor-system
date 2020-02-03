@@ -6,12 +6,20 @@
         "framework",
         "laravel"
     ],
+     "repositories": [
+        {
+          "type": "git",
+          "url": "https://github.com/smsgatewayme/client-php.git"
+        }
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "barryvdh/laravel-dompdf": "^0.8.5",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "smsgatewayme/client": "^0.0.1"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -1,16 +1,17 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index');
 
 
 Auth::routes();
 
 
-Route::group(['prefix' => 'admin'] , function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['remind.form.submission']] , function () {
 	  Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard');
   	Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
+    Route::get('/profile/update', 'Admin\ProfileController@edit')->name('admin.profile.edit');
+    Route::put('/profile/update', 'Admin\ProfileController@update')->name('admin.profile.update');
+
   	Route::get('login', 'Auth\AdminLoginController@login')->name('admin.auth.login');
   	Route::post('login', 'Auth\AdminLoginController@loginAdmin')->name('admin.auth.loginAdmin');
   	Route::post('logout', 'Auth\AdminLoginController@logout')->name('admin.auth.logout');
@@ -20,6 +21,11 @@ Route::group(['prefix' => 'admin'] , function () {
     Route::resource('forms', 'Admin\FormController'); 
     Route::post('/form/upload', 'Admin\FormController@uploadForm')->name('upload.form');
     Route::resource('campus', 'Admin\CampusController');
+    Route::get('/download/submitted/campus/form/{filename}/{campus}', 'Admin\DownloadCampusSubmittedFormController@getFile')
+                      ->name('download.campus.submitted.form');
+
+    Route::get('/admin/download/{file}' , 'Admin\FormController@downloadForm')->name('download-admin.submitted.form');
+    Route::resource('sms', 'Admin\SMSController');
   });
 
 
@@ -34,7 +40,8 @@ Route::group(['prefix' => 'campus'] , function () {
 
     Route::get('/download/{file}', 'Campus\DownloadFormController@getFile')->name('download.file');
 
-    Route::post('campus-form-upload', 'Campus\SubmitFormController@upload')->name('campus-form-upload');
+
+    Route::post('campus-form-upload/{link}', 'Campus\SubmitFormController@upload')->name('campus-form-upload');
     Route::resource('campus-form', 'Campus\SubmitFormController');
 });
 
