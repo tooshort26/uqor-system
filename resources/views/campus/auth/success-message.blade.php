@@ -17,7 +17,7 @@
                                     <img width="150" src="{{URL::asset('images/sdssu.png')}}" alt="">
                                  </div>
                                 <div class="p-5">
-                                	<h3>Please wait for the approval of the administrator to your account request we immediately send you a Email after reviewing your campus credentials.</h3>
+                                	<h4>Please wait for the approval of the administrator to your account request we immediately send you a Email after reviewing your campus credentials.</h4>
                                 </div>
                             </div>
                         </div>

@@ -9,9 +9,9 @@
                   <div class="card-header border-bottom">
                     <h6 class="m-0">List of all registered campus</h6>
                   </div>
-                  <div class="card-body p-0 pb-3 text-center">
-                    <table class="table table-hover">
-                      <thead class="bg-light">
+                  <div class="card-body pb-3">
+                    <table class="table table-hover table-bordered">
+                      <thead>
                         <tr>
                           <th>Name</th>
                           <th>Email</th>
@@ -31,7 +31,7 @@
 	                      		<td>{{ $campus->address }}</td>
 	                      		<td>{{ $campus->created_at->format('F d, Y h:m A') }}</td>
                             <td>{{ $campus->updated_at->format('F d, Y h:m A') }}</td>
-	                      		<td><a class='btn btn-success' href="{{ route('campus.show', $campus->id) }}">View</a>
+	                      		<td class='text-center'><a class='btn btn-success' href="{{ route('campus.show', $campus->id) }}">View</a>
 	                      		</td>
                           </tr>
 	                      	@empty

@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['remind.form.submission']] ,
 
     Route::get('/admin/download/{file}' , 'Admin\FormController@downloadForm')->name('download-admin.submitted.form');
     Route::resource('sms', 'Admin\SMSController');
+    Route::resource('report', 'Admin\ReportController');
   });
 
 

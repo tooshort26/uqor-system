@@ -52,6 +52,14 @@
                   <span>SMS</span>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('report.create') }}">
+                  <i class="material-icons">bar_chart</i>
+                  <span>Reports</span>
+                </a>
+              </li>
+
             </ul>
           </div>
         </aside>

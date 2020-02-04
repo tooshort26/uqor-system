@@ -3,25 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Campus;
+use App\Form;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Repository\SMSRepository;
-use App\Jobs\SendSMSJob;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use SMSGatewayMe\Client\ApiClient;
-use SMSGatewayMe\Client\Api\MessageApi;
-use SMSGatewayMe\Client\Configuration;
-use SMSGatewayMe\Client\Model\SendMessageRequest;
 
-class SMSController extends Controller
+class ReportController extends Controller
 {
-    private $smsRepository;
-
-    public function __construct(SMSRepository $smsRepo)
+    public function __construct()
     {
         $this->middleware('auth:admin');
-        $this->smsRepository = $smsRepo;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,8 +21,16 @@ class SMSController extends Controller
      */
     public function index()
     {
-        $campuses = Campus::get();
-        return view('admin.sms.index', compact('campuses'));
+        $noOfQuarters = 4;
+        $currentYear = date('Y');
+        $forms = Form::whereYear('created_at', $currentYear)
+                        ->whereBetween('quarter', [1, $noOfQuarters])
+                        ->orderBy('created_at', 'DESC')->get()->groupBy(function (Form $form) {
+                            return $form->created_at->format('Y') . '_' . $form->created_at->quarter;
+                            // return $form->created_at->format('Y') . '_' . $form->quarter;
+                        });
+        $campus = Campus::with('forms')->get();
+        return view('admin.report.index', compact('forms', 'campus'));
     }
 
     /**
@@ -40,7 +40,7 @@ class SMSController extends Controller
      */
     public function create()
     {
-       return view('admin.sms.create');
+        //
     }
 
     /**
@@ -51,18 +51,7 @@ class SMSController extends Controller
      */
     public function store(Request $request)
     {
-       $this->validate($request, [
-        'phone_numbers' => 'required',
-        'message'      => 'required'
-      ]);
-
-       // Convert phone numbers to array and split
-       $phone_numbers = explode(',', $request->phone_numbers);
-       $job = (new SendSMSJob($this->smsRepository, $phone_numbers, $request->message))
-                                ->delay(now()->addSeconds(5));
-       dispatch($job);
-     
-       return redirect()->back()->with('success', 'Succesfully send a message');
+        //
     }
 
     /**
