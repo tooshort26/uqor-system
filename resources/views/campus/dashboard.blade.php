@@ -25,6 +25,7 @@
                       </thead>
                       <tbody>
                       		@forelse($forms as $form)
+                          @php $hasSubmit = false @endphp
                       			<tr>
                       				<td class='text-capitalize'>{{ $form->title }}</td>
                       				<td class='text-capitalize'>{{ $form->description }}</td>
@@ -39,12 +40,18 @@
                                     <span class="badge badge-primary">{{ $form->deadline->diffForHumans() }}</span>
                                   @endif
                                 @else
+                                @php $hasSubmit = true @endphp
                                 <span class="badge badge-success">Already Submit</span>
                                 @endif
                       					
                       				</td>
                       				<td>
-                      					<a href="{{ route('download.file', $form->link) }}" class='btn btn-primary'>Download</a>
+                                @if($hasSubmit)
+                                  <a href="{{ route('download.uploaded-file', $form->link) }}" class='btn btn-primary'>Download</a>
+                                  @else
+                                  <a href="{{ route('download.file', $form->link) }}" class='btn btn-primary'>Download</a>
+                                @endif
+                      					
                       					@if(!$form->deadline->isPast() && !in_array($form->id, $campusSubmittedFormIds))
                       						<a href="{{ route('campus-form.edit', $form) }}" class='btn btn-success'>Submit Form</a>
                       					@endif

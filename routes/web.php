@@ -42,6 +42,7 @@ Route::group(['prefix' => 'campus'] , function () {
     Route::put('account/setting', 'Campus\EditProfileController@update')->name('campus.account.setting.update');
 
     Route::get('/download/{file}', 'Campus\DownloadFormController@getFile')->name('download.file');
+    Route::get('/download/uploaded/{file}', 'Campus\DownloadFormController@getUploadedFile')->name('download.uploaded-file');
 
 
     Route::post('campus-form-upload/{link}', 'Campus\SubmitFormController@upload')->name('campus-form-upload');

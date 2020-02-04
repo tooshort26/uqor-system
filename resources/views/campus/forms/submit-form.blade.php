@@ -35,7 +35,7 @@
       </div>
 
       <div class="text-right">
-          <input type="submit" value="Submit form" class='btn btn-primary'>
+          <input type="submit" value="Submit form" class='btn btn-primary' id='btnSubmitForm' disabled='true'>
       </div>
 
     </form>
@@ -54,6 +54,9 @@
       .use(Uppy.XHRUpload, {
           endpoint: endPoint,
           'X-CSRF-TOKEN' : " {{csrf_token()}} "
+      });
+       uppy.on('complete', (result) => {
+        $('#btnSubmitForm').prop('disabled', false);
       });
 </script>
 @endpush

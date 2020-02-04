@@ -15,8 +15,6 @@
   <div class="card-body p-3 pb-3">
     <form action="{{ route('forms.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
-
-  
       <div class="form-group">
         <label>Title</label>
         <input type="text" name='title' class='form-control font-weight-bold' placeholder="Enter the title of the form">  
@@ -37,7 +35,7 @@
       </div>
 
       <div class="text-right">
-          <input type="submit" value="Submit form" class='btn btn-primary'>
+          <input type="submit" value="Submit form"  id='btnSubmitForm' class='btn btn-primary' disabled='true'>
       </div>
 
     </form>
@@ -56,6 +54,9 @@
       .use(Uppy.XHRUpload, {
           endpoint: endPoint,
           'X-CSRF-TOKEN' : " {{csrf_token()}} "
+      });
+      uppy.on('complete', (result) => {
+        $('#btnSubmitForm').prop('disabled', false);
       });
 </script>
 @endpush
