@@ -37,6 +37,8 @@ Route::group(['prefix' => 'campus'] , function () {
     Route::get('register', 'Campus\CampusRegisterController@create')->name('campus.auth.register');
     Route::post('register', 'Campus\CampusRegisterController@store')->name('campus.register.submit');
   	Route::post('logout', 'Auth\CampusLoginController@logout')->name('campus.auth.logout');
+    Route::get('account/setting', 'Campus\EditProfileController@edit')->name('campus.account.setting');
+    Route::put('account/setting', 'Campus\EditProfileController@update')->name('campus.account.setting.update');
 
     Route::get('/download/{file}', 'Campus\DownloadFormController@getFile')->name('download.file');
 

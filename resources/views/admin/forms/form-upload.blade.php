@@ -7,6 +7,7 @@
 @section('content')
  @include('templates.success')
  @include('templates.error')
+ @include('templates.form-reminder')
  <div class="card card-small mb-4 rounded-0">
   <div class="card-header border-bottom">
     <h6 class="m-0">Form</h6>

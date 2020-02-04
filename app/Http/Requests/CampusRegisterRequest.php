@@ -26,6 +26,7 @@ class CampusRegisterRequest extends FormRequest
         return [
             'email' => 'required|email|unique:campuses',
             'name' => 'required|unique:campuses',
+            'phone_number' => 'required|unique:campuses', 
             'address' => 'required|min:6|max:50',
             'password' => 'required|min:8|max:20|confirmed',
         ];

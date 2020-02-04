@@ -2,6 +2,7 @@
 @section('page-small-title','Campus')
 @section('page-title','Campus ' . ucfirst($campus->name) . ' Profile')
 @section('content')
+@include('templates.form-reminder')
 <div class="row">
   <div class="col">
     <div class="card card-small rounded-0">
@@ -17,6 +18,12 @@
           <label class='font-weight-bold'>Campus Email</label>
           <input type="text"  class='font-weight-bold form-control' readonly value={{ $campus->email }}>
         </div>
+
+        <div class="form-group">
+          <label class='font-weight-bold'>Campus Phone number</label>
+          <input type="text"  class='font-weight-bold form-control' readonly value={{ $campus->phone_number }}>
+        </div>
+
         <div class="form-group">
           <label class='font-weight-bold'>Campus Address</label>
           <textarea readonly class='font-weight-bold form-control' id="" cols="30" rows="10">{{ $campus->address }}</textarea>

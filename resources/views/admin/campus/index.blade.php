@@ -2,6 +2,7 @@
 @section('page-small-title','Campus')
 @section('page-title','List of all registered campus')
 @section('content')
+@include('templates.form-reminder')
             <div class="row">
               <div class="col">
                 <div class="card card-small rounded-0">
@@ -14,6 +15,7 @@
                         <tr>
                           <th>Name</th>
                           <th>Email</th>
+                          <th>Phone Number</th>
                           <th>Address</th>
                           <th>Request at</th>
                           <th>Approved at</th>
@@ -25,6 +27,7 @@
                       	 <tr>
 	                      		<td>{{ $campus->name }}</td>
 	                      		<td>{{ $campus->email }}</td>
+                            <td>{{ $campus->phone_number }}</td>
 	                      		<td>{{ $campus->address }}</td>
 	                      		<td>{{ $campus->created_at->format('F d, Y h:m A') }}</td>
                             <td>{{ $campus->updated_at->format('F d, Y h:m A') }}</td>

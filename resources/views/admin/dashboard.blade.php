@@ -5,13 +5,7 @@
  <!-- Default Light Table -->
  @include('templates.success')
  @include('templates.error')
- @if(Session::get('form_submission_review') == 'no_form')
- <div class="alert alert-danger text-white fade show mb-0" role="alert">
-    <i class="fa fa-times mx-2"></i>
-    <strong>Please upload a uniform form for this quarter.</strong>
-    </div>
- @endif
- <br>
+ @include('templates.form-reminder')
             <div class="row">
               <div class="col">
                 <div class="card card-small rounded-0">
@@ -24,6 +18,7 @@
                         <tr>
                           <th>Name</th>
                           <th>Email</th>
+                          <th>Phone Number</th>
                           <th>Address</th>
                           <th>Request at</th>
                           <th>Actions</th>
@@ -34,6 +29,7 @@
                       	   <tr>
 	                      		<td>{{ $campus->name }}</td>
 	                      		<td>{{ $campus->email }}</td>
+                            <td>{{ $campus->phone_number }}</td>
 	                      		<td>{{ $campus->address }}</td>
 	                      		<td>{{ $campus->created_at->format('F d, Y h:m A') }}</td>
 	                      		<td><a class='btn btn-primary' href="{{ route('approved.campus.request', $campus->id) }}">Approve</a>

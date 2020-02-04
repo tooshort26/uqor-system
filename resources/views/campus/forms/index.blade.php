@@ -1,8 +1,7 @@
-@extends('admin.layouts.dashboard-template')
+@extends('campus.layouts.dashboard-template')
 @section('page-small-title','Dashboard')
 @section('page-title','Overview')
 @section('content')
-@include('templates.form-reminder')
             <div class="row">
               <div class="col">
                 <div class="card card-small rounded-0">
@@ -12,9 +11,6 @@
                   </div>
 
                   <div class="card-body pb-3 ">
-                      <div class="float-right">
-                        <a class="mb-2 btn btn-primary btn-sm" href="{{ route('forms.create') }}"><span>Upload New Form</span></a>
-                      </div>
                       @foreach($forms as $yearAndQuarter => $form)
                       @php $year = explode('_', $yearAndQuarter)[0]; $quarter = explode('_', $yearAndQuarter)[1] @endphp
                       <h5>Year {{ $year }} - Quarter {{ $quarter }}</h5>

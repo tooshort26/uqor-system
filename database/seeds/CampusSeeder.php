@@ -15,6 +15,7 @@ class CampusSeeder extends Seeder
         Campus::create([
 			'email'    => 'campus@yahoo.com',
 			'name'     => 'Campus Doe',
+            'phone_number' => '09193693499',
 			'address'  => 'Tandag City',
 			'approved' => 1,
 			'password' => 'password'

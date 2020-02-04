@@ -18,6 +18,7 @@ class CreateCampusesTable extends Migration
             $table->string('email');
             $table->string('name');
             $table->string('address');
+            $table->string('phone_number');
             $table->string('password');
             $table->string('profile')->default('no-image-icon.png');
             $table->integer('approved')->default(0);

@@ -20,7 +20,11 @@ class SubmitFormController extends Controller
      */
     public function index()
     {
-        //
+        $campus = Auth::user();
+        $forms = $campus->forms->groupBy(function (Form $form) {
+            return $form->created_at->format('Y') . '_' . $form->created_at->quarter;
+        });
+        return view('campus.forms.index', compact('forms'));
     }
 
     /**

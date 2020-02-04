@@ -27,11 +27,20 @@
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="/">
+                <a class="nav-link" href="/campus">
                   <i class="material-icons">dashboard</i>
                   <span>Dashboard</span>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('campus-form.index') }}">
+                  <i class="material-icons">view_module</i>
+                  <span>Submitted Forms</span>
+                </a>
+              </li>
+
+
             </ul>
           </div>
         </aside>
@@ -87,10 +96,10 @@
                     <span class="d-none d-md-inline-block text-capitialize">{{ Auth::user()->name }}</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.html">
-                      <i class="material-icons">&#xE7FD;</i> Profile</a>
+                    <a class="dropdown-item font-weight-bold" href="{{ route('campus.account.setting') }}">
+                      <i class="material-icons">&#xE7FD;</i> Account settings</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" style="cursor:pointer;" onclick="event.preventDefault();
+                    <a class="dropdown-item text-danger font-weight-bold" style="cursor:pointer;" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
                       <i class="material-icons text-danger">&#xE879;</i> Logout </a>
                        <form id="logout-form" action="{{ route('campus.auth.logout') }}" method="POST" style="display: none;">

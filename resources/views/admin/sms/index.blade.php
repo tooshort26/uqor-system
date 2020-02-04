@@ -6,6 +6,7 @@
   <div class="col">
     @include('templates.success')
     @include('templates.error')
+    @include('templates.form-reminder')
     <div class="card card-small rounded-0">
       <div class="card-header border-bottom">
         <h6 class="m-0">Send SMS Form</h6>

@@ -27,7 +27,7 @@
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="/admin">
+                <a class="nav-link" href="/admin">
                   <i class="material-icons">dashboard</i>
                   <span>Dashboard</span>
                 </a>

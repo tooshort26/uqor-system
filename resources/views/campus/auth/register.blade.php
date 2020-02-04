@@ -36,6 +36,11 @@
                                         <div class="form-group">
                                             <input type="text" name="name" class='form-control form-control-user font-weight-bold' placeholder="Enter your Campus name" value="{{ old('name') }}">
                                         </div>
+
+                                        <label>Phone number</label>
+                                        <div class="form-group">
+                                            <input type="text" name="phone_number" class='form-control form-control-user font-weight-bold' placeholder="Enter Phone number" value="{{ old('phone_number') }}">
+                                        </div>
                                         
                                         <label>Campus Address</label>
                                         <div class="form-group">
