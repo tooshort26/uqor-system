@@ -11,6 +11,6 @@ class Form extends Model
 
     public function campus()
     {
-       return $this->belongsToMany('App\Campus')->withTimestamps();
+       return $this->belongsToMany('App\Campus')->withTimestamps()->withPivot('status');
     }
 }

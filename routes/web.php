@@ -18,7 +18,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['remind.form.submission']] ,
 
     Route::get('/approved/campus/request/{campus}', 'Admin\CampusApprovalController@approve')->name('approved.campus.request');
     Route::get('/reject/campus/request/{campus}', 'Admin\CampusApprovalController@reject')->name('reject.campus.request');
-    Route::resource('forms', 'Admin\FormController'); 
+    Route::resource('forms', 'Admin\FormController');
+
+    Route::get('pending/forms', 'Admin\PendingFormsController@index')->name('pending-forms.index');
+    Route::get('pending/forms/{campusId}/{formId}', 'Admin\PendingFormsController@show')->name('pending-forms.show');
+
     Route::post('/form/upload', 'Admin\FormController@uploadForm')->name('upload.form');
     Route::resource('campus', 'Admin\CampusController');
     Route::get('/download/submitted/campus/form/{filename}/{campus}', 'Admin\DownloadCampusSubmittedFormController@getFile')

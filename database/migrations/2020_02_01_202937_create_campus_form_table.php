@@ -16,6 +16,7 @@ class CreateCampusFormTable extends Migration
         Schema::create('campus_form', function (Blueprint $table) {
             $table->integer('campus_id');
             $table->integer('form_id');
+            $table->enum('status', ['pending', 'approved'])->default('pending');
             $table->timestamps();
             $table->primary(['campus_id', 'form_id']);
         });

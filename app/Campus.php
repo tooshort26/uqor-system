@@ -24,6 +24,6 @@ class Campus extends Authenticatable
 
     public function forms()
     {
-       return $this->belongsToMany('App\Form')->withTimestamps();
+       return $this->belongsToMany('App\Form')->withTimestamps()->withPivot('status');
     }
 }

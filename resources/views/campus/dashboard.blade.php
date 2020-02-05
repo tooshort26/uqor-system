@@ -20,6 +20,7 @@
                           <th>Uploaded at</th>
                           <th>Deadline at</th>
                           <th>Days Left</th>
+                          <th>Status</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
@@ -39,12 +40,17 @@
                                   @else
                                     <span class="badge badge-primary">{{ $form->deadline->diffForHumans() }}</span>
                                   @endif
+                                  <td><span class="badge badge-danger">Need to submit</span></td>
                                 @else
-                                @php $hasSubmit = true @endphp
-                                <span class="badge badge-success">Already Submit</span>
+                                @php 
+                                  $index = array_search($form->id, $campusSubmittedFormIds);
+                                  $hasSubmit = true;
+                                @endphp
+                                <span class="badge badge-primary">{{ $form->deadline->diffForHumans() }}</span>
+                                <td><span class="badge badge-success">{{ $campusSubmittedFormStatus[$index] }}</span></td>
                                 @endif
-                      					
                       				</td>
+
                       				<td>
                                 @if($hasSubmit)
                                   <a href="{{ route('download.uploaded-file', $form->link) }}" class='btn btn-primary'>Download</a>

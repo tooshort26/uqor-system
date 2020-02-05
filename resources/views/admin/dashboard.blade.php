@@ -8,7 +8,7 @@
 @include('templates.form-reminder')
 <div class="row">
  <div class="col-lg col-md-6 col-sm-6 mb-4">
-    <div class="stats-small stats-small--1 card card-small">
+    <div class="stats-small stats-small--1 card card-small rounded-0">
       <div class="card-body p-0 d-flex">
         <div class="d-flex flex-column m-auto">
           <div class="stats-small__data text-center">
@@ -21,11 +21,11 @@
   </div>
 
   <div class="col-lg col-md-6 col-sm-6 mb-4">
-    <div class="stats-small stats-small--1 card card-small">
+    <div class="stats-small stats-small--1 card card-small rounded-0">
       <div class="card-body p-0 d-flex">
         <div class="d-flex flex-column m-auto">
           <div class="stats-small__data text-center">
-            <span class="stats-small__label text-uppercase">No. of campus</span>
+            <span class="stats-small__label text-uppercase text-primary">No. of campus</span>
             <h6 class="stats-small__value count my-3">{{ $noOfCampus }}</h6>
           </div>
         </div>
@@ -33,11 +33,11 @@
     </div>
   </div>
   <div class="col-lg col-md-6 col-sm-6 mb-4">
-    <div class="stats-small stats-small--1 card card-small">
+    <div class="stats-small stats-small--1 card card-small rounded-0">
       <div class="card-body p-0 d-flex">
         <div class="d-flex flex-column m-auto">
           <div class="stats-small__data text-center">
-            <span class="stats-small__label text-uppercase">No. of uploaded forms</span>
+            <span class="stats-small__label text-uppercase text-primary">No. of uploaded forms</span>
             <h6 class="stats-small__value count my-3">{{ $noOfForms }}</h6>
           </div>
         </div>
@@ -45,11 +45,11 @@
     </div>
   </div>
   <div class="col-lg col-md-6 col-sm-6 mb-4">
-    <div class="stats-small stats-small--1 card card-small">
+    <div class="stats-small stats-small--1 card card-small rounded-0">
       <div class="card-body p-0 d-flex">
         <div class="d-flex flex-column m-auto">
           <div class="stats-small__data text-center">
-            <span class="stats-small__label text-uppercase">no. of campus submitted forms</span>
+            <span class="stats-small__label text-uppercase text-primary">no. of campus submitted forms</span>
             <h6 class="stats-small__value count my-3">{{ $noOfCampusSubmittedForms }}</h6>
           </div>
         </div>
@@ -113,7 +113,7 @@
         </div>
         @foreach($form as $f)
         <h5 class='text-dark text-capitalize'>{{ $f->title }} {{ $f->created_at->format('F d, Y h:m A') }}</h5>
-        <table class='table table-bordered table-hover'>
+        <table class='table table-bordered table-hover' style='width:100%;'>
           <thead>
             <tr>
               <th>Campus Name</th>
@@ -157,5 +157,6 @@
     </div>
   </div>
 </div>
+<br>
 <!-- End Default Light Table -->
 @endsection

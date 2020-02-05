@@ -7,12 +7,13 @@ use App\Form;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CampusController extends Controller
+class PendingFormsController extends Controller
 {
     public function __construct()
     {
-        return $this->middleware('auth:admin');
+        $this->middleware('auth:admin');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +21,12 @@ class CampusController extends Controller
      */
     public function index()
     {
-        $campuses = Campus::where('approved', '=', 1)->orderBy('created_at', 'DESC')->get();
-        return view('admin.campus.index', compact('campuses'));
+        $quarters = ['First', 'Second', 'Third', 'Fourth'];
+        $campuses = Campus::with(['forms' => function ($query) {
+            $query->where('status', '!=', 'approved');
+        }])->get();
+
+        return view('admin.forms.pending.index', compact('campuses', 'quarters'));
     }
 
     /**
@@ -48,18 +53,15 @@ class CampusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id Form Id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show(int $campusId, int $formId)
     {
-        $campus = Campus::with(['forms' => function ($query) {
-            $query->where('status', '!=', 'pending');
-        }])->find($id);
-        $groupByQuarter = $campus->forms->groupBy(function (Form $form) {
-            return $form->created_at->format('Y') . '-' . $form->created_at->quarter;
-        });
-        return view('admin.campus.show', compact('campus', 'groupByQuarter'));
+        $campusWithForm = Campus::with(['forms' => function ($query) use($formId) {
+            $query->where('form_id', $formId);
+        }])->find($campusId);
+        return view('admin.forms.pending.show', compact('campusWithForm'));
     }
 
     /**

@@ -39,10 +39,21 @@
                   <span>Campuses</span>
                 </a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('forms.index') }}">
                   <i class="material-icons">view_module</i>
                   <span>Forms</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('pending-forms.index') }}">
+                  <i class="material-icons">view_module</i>
+                  <span>
+                    Pending Forms <span class="badge badge-primary">{{ $no_of_pending_submitted_forms }}</span>
+                  </span>
+
                 </a>
               </li>
 
