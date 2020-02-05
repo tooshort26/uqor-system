@@ -13,4 +13,9 @@ class Form extends Model
     {
        return $this->belongsToMany('App\Campus')->withTimestamps()->withPivot('status');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }

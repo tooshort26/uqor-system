@@ -53,6 +53,7 @@
 
                       				<td>
                                 @if($hasSubmit)
+                                  <a href="{{ route('campus-pending-forms.show', [$form]) }}" class='btn btn-success text-white font-weight-bold'>View</a>
                                   <a href="{{ route('download.uploaded-file', $form->link) }}" class='btn btn-primary'>Download</a>
                                   @else
                                   <a href="{{ route('download.file', $form->link) }}" class='btn btn-primary'>Download</a>

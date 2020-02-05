@@ -23,6 +23,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['remind.form.submission']] ,
     Route::get('pending/forms', 'Admin\PendingFormsController@index')->name('pending-forms.index');
     Route::get('pending/forms/{campusId}/{formId}', 'Admin\PendingFormsController@show')->name('pending-forms.show');
 
+    Route::post('pending/forms/add/comment/{formId}' , 'Admin\PendingFormsController@addComment')->name('pending-forms.add-comment');
+    Route::get('pending/forms/{campusId}/{formId}/approve', 'Admin\PendingFormsController@approve')->name('pending-forms.approve');
+
     Route::post('/form/upload', 'Admin\FormController@uploadForm')->name('upload.form');
     Route::resource('campus', 'Admin\CampusController');
     Route::get('/download/submitted/campus/form/{filename}/{campus}', 'Admin\DownloadCampusSubmittedFormController@getFile')
@@ -51,6 +54,7 @@ Route::group(['prefix' => 'campus'] , function () {
 
     Route::post('campus-form-upload/{link}', 'Campus\SubmitFormController@upload')->name('campus-form-upload');
     Route::resource('campus-form', 'Campus\SubmitFormController');
+    Route::get('pending/forms/{formId}', 'Campus\PendingFormsController@show')->name('campus-pending-forms.show');
 });
 
 Route::group(['prefix' => 'president'] , function () {

@@ -28,7 +28,7 @@ class DashboardController extends Controller
     {
         $noOfCampus               = Campus::count();
         $noOfForms                = Form::count();
-        $noOfCampusSubmittedForms = DB::table('campus_form')->count();
+        $noOfCampusSubmittedForms = DB::table('campus_form')->where('status', 'approved')->count();
         $campusAccountRequest     = Campus::where('approved', '!=' , 1)->get();
         $noOfQuarters             = 4;
         $currentYear              = date('Y');

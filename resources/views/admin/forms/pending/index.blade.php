@@ -2,6 +2,7 @@
 @section('page-small-title','Dashboard')
 @section('page-title','Pending Forms')
 @section('content')
+ @include('templates.success')
 @include('templates.form-reminder')
 <div class="row">
   <div class="col">
@@ -28,7 +29,7 @@
                 <td class='text-center'>{{ $c->pivot->created_at->format('F d, Y h:m A') }}</td>
                 <td class='text-center'>
                   <a href="/admin/pending/forms/{{$campus->id}}/{{ $c->pivot->form_id }}" class='btn btn-success'>View</a>
-                  <a href="" class='btn btn-primary'>Approved</a>
+                  <a href="/admin/pending/forms/{{$campus->id}}/{{$c->pivot->form_id}}/approve" class='btn btn-primary'>Approved</a>
                 </td>
               </tr>
               @endforeach
