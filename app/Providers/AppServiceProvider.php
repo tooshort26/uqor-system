@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use App\Form;
 use Illuminate\Contracts\Routing\UrlGenerator;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -34,7 +34,10 @@ class AppServiceProvider extends ServiceProvider
             $url->formatScheme('https');
         }
 
-        $no = DB::table('campus_form')->where('status', '!=', 'approved')->count();
+        $no = Form::with(['forms' => function ($query) {
+            $query->where('status', '!=' , 'approved');
+        }])->count();
+
         View::composer('admin.layouts.dashboard-template', function ($view) use ($no) {
             $view->with('no_of_pending_submitted_forms', $no);
         });
