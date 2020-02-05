@@ -26,4 +26,5 @@ class Campus extends Authenticatable
     {
        return $this->belongsToMany('App\Form')->withTimestamps()->withPivot('status');
     }
+
 }
