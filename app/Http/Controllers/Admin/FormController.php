@@ -6,6 +6,7 @@ use App\Form;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use JD\Cloudder\Facades\Cloudder;
 
 class FormController extends Controller
 {
@@ -75,6 +76,19 @@ class FormController extends Controller
             $destination =  public_path() . '/admin_forms/' . $time .'_' .  str_replace(' ', '_', $request->file('files')[0]->getClientOriginalName());
             session(['file_name' => $time .'_' .  str_replace(' ', '_', $request->file('files')[0]->getClientOriginalName())]);
             move_uploaded_file($request->file('files')[0], $destination);
+
+           \Cloudinary::config(array( 
+              "cloud_name" => "dhoso0sdj", 
+              "api_key" => "384471477377866", 
+              "api_secret" => "xYLeK2tYxXO13g8N7Iei7WlHiaw", 
+              "secure" => true
+            ));
+
+             $file_name = $request->file('files');
+             \Cloudinary\Uploader::upload($destination, ['resource_type' => 'auto']);
+
+             // session('file_name', $file_name);
+
             return response()->json(['success' => true]);
         }
     }
