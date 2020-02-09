@@ -13,7 +13,7 @@
     <h6 class="m-0">Form</h6>
   </div>
   <div class="card-body p-3 pb-3">
-    <form action="{{ route('forms.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('forms.store') }}" method="POST" enctype="multipart/form-data" id='formForSubmission'>
       @csrf
       <div class="form-group">
         <label>Title</label>
@@ -55,9 +55,12 @@
           endpoint: endPoint,
           'X-CSRF-TOKEN' : " {{csrf_token()}} "
       });
-      uppy.on('complete', (result) => {
+    uppy.on('upload-success', (file, response) => {
         $('#btnSubmitForm').prop('disabled', false);
-      });
+        $('#formForSubmission').append(`
+            <input type="hidden" name="file_url" value='${response.body.file_url}' />
+        `);
+     });
 </script>
 @endpush
 @endsection

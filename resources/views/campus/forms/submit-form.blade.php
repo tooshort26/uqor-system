@@ -12,7 +12,7 @@
     <h6 class="m-0">Form</h6>
   </div>
   <div class="card-body p-3 pb-3">
-    <form action="{{ route('campus-form.update', $campus_form->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('campus-form.update', $campus_form->id) }}" method="POST" enctype="multipart/form-data" id="campusFormSubmission">
       @csrf
       @method('PUT')
       <div class="form-group">
@@ -44,7 +44,7 @@
 @push('page-scripts')
 <script src="https://transloadit.edgly.net/releases/uppy/v1.8.0/uppy.min.js"></script>
 <script>
-  let endPoint = "{{ route('campus-form-upload', [$campus_form->link]) }}"
+  let endPoint = "{{ route('campus-form-upload', [$campus_form->id]) }}"
   var uppy = Uppy.Core()
       .use(Uppy.Dashboard, {
           inline: true,
@@ -55,9 +55,12 @@
           endpoint: endPoint,
           'X-CSRF-TOKEN' : " {{csrf_token()}} "
       });
-       uppy.on('complete', (result) => {
+      uppy.on('upload-success', (file, response) => {
         $('#btnSubmitForm').prop('disabled', false);
-      });
+        $('#campusFormSubmission').append(`
+            <input type="hidden" name="file_url" value='${response.body.file_url}' />
+        `);
+     });
 </script>
 @endpush
 @endsection

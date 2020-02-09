@@ -20,7 +20,8 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "cloudinary/cloudinary_php": "dev-master",
-        "smsgatewayme/client": "^0.0.1"
+        "smsgatewayme/client": "^0.0.1",
+        "guzzlehttp/guzzle": "^6.5"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

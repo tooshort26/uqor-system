@@ -15,8 +15,7 @@ class DownloadCampusSubmittedFormController extends Controller
 
     public function getFile(string $filename, Campus $campus)
     {
-		$pathToFile =  public_path() . '/campus_forms/' . md5($campus->name) .'_'. $filename;
-    	return response()->download($pathToFile, $campus->name . ' ' . $filename);
+    	return response()->download($filename, $campus->name . ' ' . $filename);
     }
 
 }

@@ -48,17 +48,18 @@ class FormController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title'       => 'required',
             'description' => 'required',
-            'deadline' => 'required',
+            'deadline'    => 'required',
         ]);
+
 
         Form::create([
             'title'       => $request->title,
             'description' => $request->description,
             'deadline'    => Carbon::parse($request->deadline),
             'quarter'     => Carbon::now()->quarter,
-            'link'        =>  session('file_name'),
+            'link'        =>  $request->file_url,
         ]);
 
         session()->forget('file_name');
@@ -72,31 +73,33 @@ class FormController extends Controller
     public function uploadForm(Request $request)
     {
         if ($request->has('files')) {
-            $time = time();
-            $destination =  public_path() . '/admin_forms/' . $time .'_' .  str_replace(' ', '_', $request->file('files')[0]->getClientOriginalName());
-            session(['file_name' => $time .'_' .  str_replace(' ', '_', $request->file('files')[0]->getClientOriginalName())]);
+
+            // Need to upload the file first then get
+            $destination =  public_path() . '/admin_forms/' . str_replace(' ', '_', $request->file('files')[0]->getClientOriginalName());
             move_uploaded_file($request->file('files')[0], $destination);
 
            \Cloudinary::config(array( 
-              "cloud_name" => "dhoso0sdj", 
-              "api_key" => "384471477377866", 
-              "api_secret" => "xYLeK2tYxXO13g8N7Iei7WlHiaw", 
-              "secure" => true
+              'cloud_name' => config('cloudinary.CLOUD_NAME'), 
+              'api_key'    => config('cloudinary.API_KEY'), 
+              'api_secret' => config('cloudinary.API_SECRET'), 
+              'secure'     => true
             ));
 
              $file_name = $request->file('files');
-             \Cloudinary\Uploader::upload($destination, ['resource_type' => 'auto']);
 
-             // session('file_name', $file_name);
+             $uploaded = \Cloudinary\Uploader::upload($destination, [
+                'use_filename'    => true,
+                'unique_filename' => false,
+                'resource_type'   => 'auto'
+            ]);
 
-            return response()->json(['success' => true]);
+            return response()->json(['success' => true, 'file_url' => $uploaded['url']]);
         }
     }
 
     public function downloadForm(string $filename)
     {
-        $pathToFile =  public_path() . '/admin_forms/' . $filename;
-        return response()->download($pathToFile);
+        return response()->download($filename);
     }
 
     /**

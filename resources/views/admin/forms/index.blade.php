@@ -33,7 +33,7 @@
                               <td>{{ $f->description }}</td>
                               <td class='text-center'>{{ $f->quarter }}</td>
                               <td class='text-center'>{{ $f->created_at->format('F d,Y h:m A') }}</td>
-                              <td class='text-center'><a class='btn btn-success' href="{{ route('download-admin.submitted.form', [$f->link]) }}">Download</a></td>
+                              <td class='text-center'><a class='btn btn-success' href="{{ $f->link }}">Download</a></td>
                             </tr>
                         @endforeach
                         

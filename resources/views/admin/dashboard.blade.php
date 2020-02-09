@@ -128,7 +128,7 @@
             <tr>
               <td>{{ $c->name }}</td>
               <td class='font-weight-bold text-dark'>{{ $c->forms->where('id', $f->id)->first()->pivot->created_at->format('F d, Y h:m A') }}</td>
-              <td class='text-center'><a class='btn btn-primary' href="{{ route('download.campus.submitted.form', [$f->link, $c]) }}">Download</a></td>
+              <td class='text-center'><a class='btn btn-primary' href="{{ $c->forms->where('id', $f->id)->first()->pivot->link }}">Download</a></td>
             </tr>
             @else
             {{-- IF THE CAMPUS HAVE A FORM SUBMIT BUT OTHER FORM --}}

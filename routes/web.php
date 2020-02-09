@@ -49,10 +49,10 @@ Route::group(['prefix' => 'campus'] , function () {
     Route::put('account/setting', 'Campus\EditProfileController@update')->name('campus.account.setting.update');
 
     Route::get('/download/{file}', 'Campus\DownloadFormController@getFile')->name('download.file');
-    Route::get('/download/uploaded/{file}', 'Campus\DownloadFormController@getUploadedFile')->name('download.uploaded-file');
+    Route::get('/download/uploaded/{form}', 'Campus\DownloadFormController@getUploadedFile')->name('download.uploaded-file');
 
 
-    Route::post('campus-form-upload/{link}', 'Campus\SubmitFormController@upload')->name('campus-form-upload');
+    Route::post('campus-form-upload/{formId}', 'Campus\SubmitFormController@upload')->name('campus-form-upload');
     Route::resource('campus-form', 'Campus\SubmitFormController');
     Route::get('pending/forms/{formId}', 'Campus\PendingFormsController@show')->name('campus-pending-forms.show');
 });

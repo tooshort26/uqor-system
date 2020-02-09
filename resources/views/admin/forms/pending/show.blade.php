@@ -10,7 +10,7 @@
         <h6 class="m-0 text-capitalize">{{ $campusWithForm->name }} Pending Form {{ $campusWithForm->forms->first()->title }}</h6>
       </div>
       <div class="card-body pb-3 ">
-        <iframe style="border:none" src="https://docs.google.com/viewer?url={{URL::asset('campus_forms/' . md5($campusWithForm->name) .'_'. $campusWithForm->forms->first()->link )}}&embedded=true" width="100%" height="1000px"  ></iframe>
+        <iframe style="border:none" src="https://docs.google.com/viewer?url={{$campusWithForm->forms->first()->pivot->link}}&embedded=true" width="100%" height="1000px"  ></iframe>
         <br>
         <div class="form-group">
           <br>

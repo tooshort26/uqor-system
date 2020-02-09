@@ -17,6 +17,7 @@ class CreateCampusFormTable extends Migration
             $table->integer('campus_id');
             $table->integer('form_id');
             $table->enum('status', ['pending', 'approved'])->default('pending');
+            $table->string('link');
             $table->timestamps();
             $table->primary(['campus_id', 'form_id']);
         });

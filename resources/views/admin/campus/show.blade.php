@@ -40,7 +40,8 @@
               <br>
               Submitted Date : <span class='text-primary'> {{ $f->created_at->format('F d, Y H:m A') }}</span>
               <br>
-              <a href="{{ route('download.campus.submitted.form', [$f->link, $campus]) }}"><u>Download</u></a>
+              
+              <a href="{{ $f->pivot->link }}"><u>Download</u></a>
             </li>
           @endforeach
         </ul>
