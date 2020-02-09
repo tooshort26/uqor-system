@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\President;
 
-use Illuminate\Http\Request;
+use App\Campus;
+use App\Form;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -18,6 +20,16 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('president.dashboard');
+        $quarters = ['First Quarter', 'Second Quarter', 'Third Quarter', 'Fourth Quarter'];
+
+        $campusPendingForms = Campus::with(['forms' => function ($query) {
+            $query->where('status', 'pending');
+        }])->get();
+
+        $campusApprovedForms = Campus::with(['forms' => function ($query) {
+            $query->where('status', 'approved');
+        }])->get();
+
+        return view('president.dashboard', compact('campusPendingForms', 'campusApprovedForms', 'quarters'));
     }
 }

@@ -64,6 +64,13 @@
                 </a>
               </li>
 
+               <li class="nav-item">
+                <a class="nav-link" href="{{ route('email.index') }}">
+                  <i class="material-icons">email</i>
+                  <span>Email</span>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('report.create') }}">
                   <i class="material-icons">bar_chart</i>

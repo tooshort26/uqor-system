@@ -4,37 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Campus;
 use App\Http\Controllers\Controller;
-use App\Jobs\SendApprovalAccountJob;
-use App\Jobs\SendRejectAccountJob;
+use App\Jobs\SendEmailJob;
 use Illuminate\Http\Request;
 
-class CampusApprovalController extends Controller
+class EmailController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware('auth:admin');
-    }
-
-    public function approve(Campus $campus)
-    {
-        // Send an email.
-        $campus->approved = 1;
-        $campus->save();
-        $job = (new SendApprovalAccountJob($campus->email))
-                                    ->delay(now()->addSeconds(5));
-        dispatch($job);
-        return back()->with('success', 'Succesfully approved the campus request.');
-    }
-
-    public function reject(Campus $campus)
-    {
-        // Send an email.
-        $campus->delete();
-        $job = (new SendRejectAccountJob($campus->email))
-                                    ->delay(now()->addSeconds(5));
-        dispatch($job);
-        return back()->with('success', 'Succesfully reject the campus request.');   
+        return $this->middleware('auth:admin');
     }
     /**
      * Display a listing of the resource.
@@ -43,7 +20,8 @@ class CampusApprovalController extends Controller
      */
     public function index()
     {
-        //
+        $campuses = Campus::get();
+        return view('admin.email.index', compact('campuses'));
     }
 
     /**
@@ -53,7 +31,7 @@ class CampusApprovalController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.email.create');
     }
 
     /**
@@ -64,7 +42,17 @@ class CampusApprovalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+        'emails'  => 'required',
+        'message' => 'required'
+      ]);
+
+       // Convert phone numbers to array and split
+       $emails = explode(',', $request->emails);
+       $job = (new SendEmailJob($emails, $request->message))
+                                ->delay(now()->addSeconds(5));
+       dispatch($job);
+       return back()->with('success', 'Succesfully send email.');
     }
 
     /**
@@ -96,10 +84,9 @@ class CampusApprovalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        
-       
+        //
     }
 
     /**

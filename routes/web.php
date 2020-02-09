@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['remind.form.submission']] ,
 
     Route::get('/admin/download/{file}' , 'Admin\FormController@downloadForm')->name('download-admin.submitted.form');
     Route::resource('sms', 'Admin\SMSController');
+    Route::resource('email', 'Admin\EmailController');
     Route::resource('report', 'Admin\ReportController');
   });
 
@@ -63,6 +64,10 @@ Route::group(['prefix' => 'president'] , function () {
   	Route::get('login', 'Auth\PresidentLoginController@login')->name('president.auth.login');
   	Route::post('login', 'Auth\PresidentLoginController@loginPresident')->name('president.auth.loginPresident');
   	Route::post('logout', 'Auth\PresidentLoginController@logout')->name('president.auth.logout');
+    Route::get('/profile/update', 'President\ProfileController@edit')->name('president.profile.edit');
+    Route::put('/profile/update', 'President\ProfileController@update')->name('president.profile.update');
+
+    Route::get('/form/pending/preview/{campusId}/{formId}', 'President\FormController@show')->name('president-view.form');
 });
 
 

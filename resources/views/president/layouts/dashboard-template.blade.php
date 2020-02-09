@@ -87,9 +87,9 @@
                     <span class="d-none d-md-inline-block text-capitialize">{{ Auth::user()->name }}</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.html">
-                      <i class="material-icons">&#xE7FD;</i> Profile</a>
-                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item font-weight-bold" href="{{ route('president.profile.edit') }}">
+                      <i class="material-icons">&#xE7FD;</i> Account Setting</a>
+                      <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" style="cursor:pointer;" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
                           <i class="material-icons text-danger">&#xE879;</i> Logout </a>
