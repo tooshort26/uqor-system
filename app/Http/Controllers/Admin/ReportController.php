@@ -6,6 +6,9 @@ use App\Campus;
 use App\Form;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class ReportController extends Controller
 {
@@ -40,7 +43,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.report.create');
     }
 
     /**
@@ -51,7 +54,15 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $from_date = Carbon::parse($request->from_date);
+        $to_date   = Carbon::parse($request->to_date);
+        
+        $campuses = Campus::whereHas('forms', function (Builder $query) {
+            $query->where('status', '!=', 'pending');
+        })->withCount('forms')->get();
+
+        return view('admin.report.generated', compact('campuses', 'from_date', 'to_date'));
+         
     }
 
     /**

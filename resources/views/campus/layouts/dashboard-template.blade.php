@@ -127,9 +127,7 @@
               @yield('content')          
           </div>
           <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
-            <span class="copyright ml-auto my-auto mr-2">Copyright © {{ date('Y') }}
-              <a href="https://designrevision.com" rel="nofollow">DesignRevision</a>
-            </span>
+            <span class="copyright ml-auto my-auto mr-2">Copyright © {{ date('Y') }}</span>
           </footer>
         </main>
       </div>

@@ -34,14 +34,18 @@ class AppServiceProvider extends ServiceProvider
             $url->formatScheme('https');
         }
 
-        $no = Campus::withCount(['forms' => function ($query) {
-            $query->where('status', '!=' , 'approved');
-        }])->pluck('forms_count');
+        if (Schema::hasTable('campuses')) {
+            $no = Campus::withCount(['forms' => function ($query) {
+                $query->where('status', '!=' , 'approved');
+            }])->pluck('forms_count');
 
-        $no = $no->sum();
+            $no = $no->sum();
 
-        View::composer('admin.layouts.dashboard-template', function ($view) use ($no) {
-            $view->with('no_of_pending_submitted_forms', $no);
-        });
+            View::composer('admin.layouts.dashboard-template', function ($view) use ($no) {
+                $view->with('no_of_pending_submitted_forms', $no);
+            });
+        }
+
+        
     }
 }
