@@ -29,13 +29,14 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user font-weight-bold" name="password" id="userPassword" placeholder="Password">
                                         </div>
-                                        <a href="{{ route('campus.auth.register') }}">Request an account here</a>
-                                      {{--   <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember Me</label>
-                                            </div>
-                                        </div> --}}
+                                        <div class="form-group float-right">
+                                            <a href="{{ route('campus.auth.register') }}">Request an account here</a>
+                                            <br>
+                                            <a href="/admin/login">Adminstrator Login</a>
+                                            <br>
+                                            <a href="/president/login">President Login</a>
+                                        </div>
+                                        <div class="clearfix"></div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-user">Login</button>
                                         </div>

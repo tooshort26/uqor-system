@@ -36,6 +36,12 @@
                                                 <label class="custom-control-label" for="customCheck">Remember Me</label>
                                             </div>
                                         </div> --}}
+                                        <div class="form-group float-right">
+                                            <a href="/admin/login">Adminstrator Login</a>
+                                            <br>
+                                            <a href="/campus/login">Campus Login</a>
+                                        </div>
+                                        <div class="clearfix"></div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-user">
                                             Login
