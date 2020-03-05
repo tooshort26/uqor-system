@@ -1,6 +1,18 @@
 <?php
 
 return [
+    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'port' => env('MAIL_PORT', 587),
+    'from' => ['address' => env('MAIL_FROM_ADDRESS', 'university_quarterly@gmail.com'), 'name' => env('MAIL_FROM_NAME', 'SDSSU Main Campu')],
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'username' => env('MAIL_USERNAME'),
+    'password' => env('MAIL_PASSWORD'),
+    'sendmail' => '/usr/sbin/sendmail -bs',
+    'pretend' => false,
+];
+
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +41,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +68,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'admin@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'university_quarterly@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'SDSSU Main Campus'),
     ],
 
     /*
@@ -84,9 +96,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', '0dcd4c4637cf65'),
+    'username' => env('MAIL_USERNAME'),
 
-    'password' => env('MAIL_PASSWORD', 'df936ffd68ed4a'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
