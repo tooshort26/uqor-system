@@ -39,9 +39,13 @@ class DashboardController extends Controller
                             return $form->created_at->format('Y') . '_' . $form->created_at->quarter;
                             // return $form->created_at->format('Y') . '_' . $form->quarter;
                         });
-        $campus = Campus::with(['forms' => function ($query) {
+
+
+        $campus = Campus::where('approved', '!=', 0)->with(['forms' => function ($query) {
             $query->where('status', '!=', 'pending');
         }])->get();
+
+
         return view('admin.dashboard', compact('campusAccountRequest', 'campus', 'forms' , 'noOfCampusSubmittedForms', 'noOfForms', 'noOfCampus'));
     }
   

@@ -1,4 +1,4 @@
-@extends('admin.layouts.dashboard-template')
+@extends('president.layouts.dashboard-template')
 @section('page-small-title','Admin')
 @section('page-title','Update your profile')
 @section('content')

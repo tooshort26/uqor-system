@@ -78,15 +78,15 @@
             </tr>
           </thead>
           <tbody>
-            @forelse($campusAccountRequest as $campus)
+            @forelse($campusAccountRequest as $cCampus)
             <tr>
-              <td>{{ $campus->name }}</td>
-              <td>{{ $campus->email }}</td>
-              <td>{{ $campus->phone_number }}</td>
-              <td>{{ $campus->address }}</td>
-              <td>{{ $campus->created_at->format('F d, Y h:m A') }}</td>
-              <td><a class='btn btn-primary' href="{{ route('approved.campus.request', $campus->id) }}">Approve</a>
-              <a class='btn btn-danger' href="{{ route('reject.campus.request', $campus->id) }}">Reject</a></td>
+              <td>{{ $cCampus->name }}</td>
+              <td>{{ $cCampus->email }}</td>
+              <td>{{ $cCampus->phone_number }}</td>
+              <td>{{ $cCampus->address }}</td>
+              <td>{{ $cCampus->created_at->format('F d, Y h:m A') }}</td>
+              <td><a class='btn btn-primary' href="{{ route('approved.campus.request', $cCampus->id) }}">Approve</a>
+              <a class='btn btn-danger' href="{{ route('reject.campus.request', $cCampus->id) }}">Reject</a></td>
             </tr>
             @empty
             <td class='text-capitalize text-danger text-center' colspan='6'>no available account request</td>
