@@ -73,9 +73,9 @@ class FormController extends Controller
         $campusPhoneNumbers = Campus::where('approved', '!=', 0)->get(['phone_number'])
                                     ->pluck('phone_number')->toArray();
         $message = "Administrator uploaded a unified form " . $request->title . " - " . $request->description . " - deadline would be in " . $deadlineParse->format('F d, Y');
-       /* $job = (new SendSMSJob($this->smsRepository, $campusPhoneNumbers, $message))
+        $job = (new SendSMSJob($this->smsRepository, $campusPhoneNumbers, $message))
                                 ->delay(now()->addSeconds(5));
-       dispatch($job);*/
+       dispatch($job);
        
        $publishJob = (new PublishNewForm($form->toArray()))
                                 ->delay(now()->addSeconds(5));
