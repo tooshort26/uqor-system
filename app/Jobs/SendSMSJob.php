@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Exception;
 
 class SendSMSJob implements ShouldQueue
 {
@@ -35,9 +36,13 @@ class SendSMSJob implements ShouldQueue
      */
     public function handle()
     {
-        $this->smsRepo->loadConfiguration()
+        try {
+            $this->smsRepo->loadConfiguration()
                     ->registerPhoneNumbers($this->phone_numbers)
                     ->buildMessage($this->message)
                     ->send();
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
     }
 }

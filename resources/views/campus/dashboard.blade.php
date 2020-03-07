@@ -24,7 +24,7 @@
                           <th>Actions</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id='table-row'>
                       		@forelse($forms as $form)
                           @php $hasSubmit = false @endphp
                       			<tr>

@@ -7,12 +7,18 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use JD\Cloudder\Facades\Cloudder;
+use App\Campus;
+use App\Http\Controllers\Repository\SMSRepository;
+use App\Jobs\SendSMSJob;
+use App\Jobs\PublishNewForm;
 
 class FormController extends Controller
 {
-    public function __construct()
+    public function __construct(SMSRepository $smsRepository)
     {
         $this->middleware('auth:admin');
+        $this->smsRepository = $smsRepository;
+        
     }
     /**
      * Display a listing of the resource.
@@ -54,7 +60,7 @@ class FormController extends Controller
         ]);
 
 
-        Form::create([
+        $form = Form::create([
             'title'       => $request->title,
             'description' => $request->description,
             'deadline'    => Carbon::parse($request->deadline),
@@ -63,6 +69,17 @@ class FormController extends Controller
         ]);
 
         session()->forget('file_name');
+        $deadlineParse = Carbon::parse($request->deadline);
+        $campusPhoneNumbers = Campus::where('approved', '!=', 0)->get(['phone_number'])
+                                    ->pluck('phone_number')->toArray();
+        $message = "Administrator uploaded a unified form " . $request->title . " - " . $request->description . " - deadline would be in " . $deadlineParse->format('F d, Y');
+       /* $job = (new SendSMSJob($this->smsRepository, $campusPhoneNumbers, $message))
+                                ->delay(now()->addSeconds(5));
+       dispatch($job);*/
+       
+       $publishJob = (new PublishNewForm($form->toArray()))
+                                ->delay(now()->addSeconds(5));
+       dispatch($publishJob);
 
         return back()->with('success', 'Succesfully upload new form.');
     }

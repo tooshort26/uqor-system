@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTU4MDczMjIyNywiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjY1MDk1LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.JQlVJ0D5rWBPITENgxQnlafqjManlaPxGwtfRe2dtlI',
-    'deviceId' => '114707',
+    'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTU4MzU2NTE3NywiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjY1MDk1LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.4M9hUicSLA9PAhJtKtnxZZ7NeIa7CJWB7pnXL1tYD1I',
+    'deviceId' => 115385,
 
 ];
