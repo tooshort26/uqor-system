@@ -117,7 +117,7 @@
           <thead>
             <tr>
               <th>Campus Name</th>
-              <th>Submitted at</th>
+              <th>Submitted</th>
               <th>Action</th>
             </tr>
           </thead>

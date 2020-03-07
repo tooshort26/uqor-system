@@ -16,7 +16,7 @@
             <tr>
               <th>Name</th>
               <th>Year & Quarter</th>
-              <th>Submitted At</th>
+              <th>Submitted</th>
               <th>Action</th>
             </tr>
           </thead>

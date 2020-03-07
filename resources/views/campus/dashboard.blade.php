@@ -17,8 +17,8 @@
                           <th>Title</th>
                           <th>Description</th>
                           <th>Quarter</th>
-                          <th>Uploaded at</th>
-                          <th>Deadline at</th>
+                          <th>Date Uploaded</th>
+                          <th>Deadline</th>
                           <th>Days Left</th>
                           <th>Status</th>
                           <th>Actions</th>
@@ -66,7 +66,7 @@
                       			</tr>
                       			@empty
                       			<tr>
-                      				<td class='text-danger text-capitalize' colspan='6'>no available data</td>
+                      				<td class='text-danger text-capitalize' colspan='8'>no available data</td>
                       			</tr>
                       		@endforelse
                       	

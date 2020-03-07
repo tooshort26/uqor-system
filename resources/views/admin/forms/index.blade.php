@@ -23,7 +23,7 @@
                               <th>Title</th>
                               <th>Description</th>
                               <th>Quarter</th>
-                              <th>Uploaded At</th>
+                              <th>Uploaded</th>
                               <th class='text-center'>Actions</th>
                             </thead>
                             <tbody>

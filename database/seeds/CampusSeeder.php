@@ -13,7 +13,7 @@ class CampusSeeder extends Seeder
     public function run()
     {
         Campus::create([
-			'email'    => 'campus@yahoo.com',
+			'email'    => 'christophervistal26@gmail.com',
 			'name'     => 'Campus Doe',
             'phone_number' => '09193693499',
 			'address'  => 'Tandag City',
