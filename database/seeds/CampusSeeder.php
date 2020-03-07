@@ -13,9 +13,9 @@ class CampusSeeder extends Seeder
     public function run()
     {
         Campus::create([
-			'email'    => 'cdongayyo@gmail.com',
+			'email'    => 'cdongayo@gmail.com',
 			'name'     => 'Campus Doe',
-            'phone_number' => '09193693499',
+            'phone_number' => '09151789072',
 			'address'  => 'Tandag City',
 			'approved' => 1,
 			'password' => 'password'
