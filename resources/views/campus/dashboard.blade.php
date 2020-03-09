@@ -55,6 +55,7 @@
                                 @if($hasSubmit)
                                   <a href="{{ route('campus-pending-forms.show', [$form]) }}" class='btn btn-success text-white font-weight-bold'>View</a>
                                   <a href="{{ Auth::user()->forms->where('id', $form->id)->first()->pivot->link }}" class='btn btn-primary'>Download</a>
+                                  <a href="{{ route('campus-form.edit', $form) }}" class='btn btn-info'>Replace Submitted Form</a>
                                   @else
                                   <a href="{{ $form->link }}" class='btn btn-primary'>Download</a>
                                 @endif
@@ -65,7 +66,7 @@
                       				</td>
                       			</tr>
                       			@empty
-                      			<tr>
+                      			<tr id="no-data-message">
                       				<td class='text-danger text-capitalize' colspan='8'>no available data</td>
                       			</tr>
                       		@endforelse

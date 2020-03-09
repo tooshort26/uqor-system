@@ -51,7 +51,7 @@
                 <a class="nav-link" href="{{ route('pending-forms.index') }}">
                   <i class="material-icons">view_module</i>
                   <span>
-                    Pending Forms <span class="badge badge-primary">{{ $no_of_pending_submitted_forms }}</span>
+                    Pending Forms <span class="badge badge-primary"  id="pending-forms-count">{{ $no_of_pending_submitted_forms }}</span>
                   </span>
 
                 </a>
@@ -96,35 +96,11 @@
                   <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="nav-link-icon__wrapper">
                       <i class="material-icons">&#xE7F4;</i>
-                      <span class="badge badge-pill badge-danger">2</span>
+                      <span class="badge badge-pill badge-danger" id="notification-bell-count">0</span>
                     </div>
                   </a>
-                  <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">
-                      <div class="notification__icon-wrapper">
-                        <div class="notification__icon">
-                          <i class="material-icons">&#xE6E1;</i>
-                        </div>
-                      </div>
-                      <div class="notification__content">
-                        <span class="notification__category">Analytics</span>
-                        <p>Your website’s active users count increased by
-                          <span class="text-success text-semibold">28%</span> in the last week. Great job!</p>
-                      </div>
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      <div class="notification__icon-wrapper">
-                        <div class="notification__icon">
-                          <i class="material-icons">&#xE8D1;</i>
-                        </div>
-                      </div>
-                      <div class="notification__content">
-                        <span class="notification__category">Sales</span>
-                        <p>Last week your store’s sales count decreased by
-                          <span class="text-danger text-semibold">5.52%</span>. It could have been worse!</p>
-                      </div>
-                    </a>
-                    <a class="dropdown-item notification__all text-center" href="#"> View all Notifications </a>
+                  <div class="dropdown-menu dropdown-menu-small" id='notification-content' aria-labelledby="dropdownMenuLink">
+                    {{--  CONTENT --}}
                   </div>
                 </li>
                 <li class="nav-item dropdown">

@@ -14,6 +14,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="socket_url" content={{ config('socket.base_url') }}>
     @stack('page-css')
   </head>
   <body class="h-100">

@@ -2,7 +2,6 @@
 @section('page-small-title','Dashboard')
 @section('page-title','Form' . $campusWithForm->name )
 @section('content')
-@include('templates.form-reminder')
 <div class="row">
   <div class="col">
     <div class="card card-small rounded-0">

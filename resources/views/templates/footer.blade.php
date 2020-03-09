@@ -7,30 +7,40 @@
 <script src="{{URL::asset('scripts/extras.1.1.0.min.js')}}"></script>
 <script src="{{URL::asset('scripts/shards-dashboards.1.1.0.min.js')}}"></script>
 <script src="{{URL::asset('scripts/app/app-blog-overview.1.1.0.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-@stack('page-scripts')
-@php
-$route = array_filter(explode('/', URL::current()));
-@endphp
-@if($route[3] == 'campus') 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>3
 <script src="https://unpkg.com/@feathersjs/client@^4.3.0/dist/feathers.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 
 
-    <script>
+@stack('page-scripts')
 
-      // Socket.io setup
-      const socket = io('https://university-quarter-socket.herokuapp.com/');
+@php
+$route = array_filter(explode('/', URL::current()));
+@endphp
+
+<script>
+let socket_url =  $('meta[name=socket_url]').attr('content');
+// Socket.io setup
+const socket = io(socket_url);
+ // Init feathers app
+const app = feathers();
+
+// Register socket.io to talk to server
+app.configure(feathers.socketio(socket));
+</script>
+
+@if($route[3] == 'campus') 
+
+
+    <script>
+   
       let formCount = 0;
 
-      // Init feathers app
-      const app = feathers();
+     
 
       let tableRow = document.querySelector('#table-row');
 
-      // Register socket.io to talk to server
-      app.configure(feathers.socketio(socket));
+ 
 		toastr.options.showMethod    = 'slideDown';
 		toastr.options.closeDuration = 30;
 
@@ -56,6 +66,7 @@ $route = array_filter(explode('/', URL::current()));
 		
 
 	    socket.on('publish_unified_form', function (data) {
+	    	$('#no-data-message').hide();
 	    	formCount++;
 	    	updateNotification(data, formCount);
 			toastr.info(`Administrator upload new unified form ${data.title} - ${data.description}`);
@@ -82,22 +93,31 @@ $route = array_filter(explode('/', URL::current()));
 	    	`;
 	    });
 
-
-     
-
-      /*async function init() {
-        // Find ideas
-        const ideas = await app.service('ideas').find();
-
-        // Add existing ideas to list
-        ideas.forEach(renderIdea);
-
-        // Add idea in realtime
-        app.service('ideas').on('created', renderIdea);
-      }
-
-      init();*/
     </script>
+   @elseif($route[3] == 'admin') 
+   <script>
+
+   		socket.on('campus_submit_form', function (data) {
+   			$('#pending-forms-count').html(1);
+   			$('#notification-bell-count').html(1);
+
+        toastr.info(`${data.name} campus submit a form ${data.title} - ${data.description}`);
+
+   			$('#notification-content').append(`
+					<a class="dropdown-item" href="/admin/pending/forms/${data.campus_id}/${data.id}">
+                      <div class="notification__icon-wrapper">
+                      </div>
+                      <div class="notification__content">
+                        <span class="notification__category">${data.title}</span>
+                        <p>${data.description}</p>
+                      </div>
+                    </a>
+
+   			`);
+
+	    });
+   </script>
+
 @endif
 </body>
 </html>

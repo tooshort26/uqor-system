@@ -6,6 +6,8 @@ use App\Form;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Jobs\CampusSubmitForm;
+use App\Campus;
 
 class SubmitFormController extends Controller
 {
@@ -106,10 +108,29 @@ class SubmitFormController extends Controller
     public function update(Request $request, Form $campus_form)
     {
         if (!$campus_form->deadline->isPast()) {
+            $alreadySubmit = Campus::where('id', Auth::user()->id)->whereHas('forms', function ($q) use ($campus_form) {
+                $q->where('id', $campus_form->id);
+            })->exists();
+
+            if ($alreadySubmit) {
+                $campus_form->campus()->detach(Auth::user()->id, ['link' => $request->file_url]);
+            }
+
             $campus_form->campus()->attach(Auth::user()->id, ['link' => $request->file_url]);
+            
+            // Modidy the link&id of the form by the current upload of the campus.
+            $campus_form->link = $request->file_url;
+            $campus_form->campus_id = Auth::user()->id;
+            $campus_form->name = Auth::user()->name;
+
+            // Publish Notification.
+            $publishSubmittedForm = (new CampusSubmitForm($campus_form->toArray()))
+                                ->delay(now()->addSeconds(5));
+
+            dispatch($publishSubmittedForm);
             return redirect()->to('/campus/dashboard')->with('success', 'Succesfully submit form');
         } else {
-           return rredirect()->to('/campus/dashboard')->withErrors(['message' => 'The form submission is already deadline.']);
+           return redirect()->to('/campus/dashboard')->withErrors(['message' => 'The form submission is already deadline.']);
         }
         
     }

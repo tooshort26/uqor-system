@@ -8,14 +8,12 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use GuzzleHttp\Client;
-use Carbon\Carbon;
 
-class PublishNewForm implements ShouldQueue
+class CampusSubmitForm implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     private $data;
     private $client;
-
     /**
      * Create a new job instance.
      *
@@ -36,17 +34,11 @@ class PublishNewForm implements ShouldQueue
         try {
             $client = new Client();
             $formData = $this->data;
-            $formData['days_left']  = Carbon::parse($formData['deadline'])->diffForHumans();
-            $formData['status']     = Carbon::parse($formData['deadline'])->isPast();
-            $formData['created_at'] = Carbon::parse($formData['created_at'])->format('F j, Y H:m A');
-            $formData['deadline']   = Carbon::parse($formData['deadline'])->format('F j, Y H:m A');
-
-            $client->request('POST', config('socket.base_url') . '/upload/form/', [
+            $client->request('POST', config('socket.base_url') . '/campus/submit/form', [
                'form_params' => $formData
             ]);
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
-        
     }
 }
