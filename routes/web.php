@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['remind.form.submission']] ,
 
     Route::post('/form/upload', 'Admin\FormController@uploadForm')->name('upload.form');
     Route::resource('campus', 'Admin\CampusController');
+    Route::resource('role', 'Admin\RoleController');
     Route::get('/download/submitted/campus/form/{filename}/{campus}', 'Admin\DownloadCampusSubmittedFormController@getFile')
                       ->name('download.campus.submitted.form');
 

@@ -32,13 +32,28 @@
                   <span>Dashboard</span>
                 </a>
               </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-nowrap" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">school</i>
+                  <span>Campuses</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-small">
+                  <a class="dropdown-item" href="{{ route('campus.index') }}">
+                    Registered campuses
+                  </a>
+                  <a class="dropdown-item" href="{{ route('role.index') }}">
+                    Roles
+                  </a>
+                </div>
+              </li>
              
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('campus.index') }}">
                   <i class="material-icons">school</i>
                   <span>Campuses</span>
                 </a>
-              </li>
+              </li> --}}
 
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('forms.index') }}">
