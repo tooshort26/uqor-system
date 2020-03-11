@@ -1,7 +1,7 @@
 <?php
 
-Route::get('/', 'WelcomeController@index');
 
+Route::get('/', 'WelcomeController@index');
 
 Auth::routes();
 

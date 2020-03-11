@@ -34,7 +34,12 @@
 
                                         <label>Campus Name</label>
                                         <div class="form-group">
-                                            <input type="text" name="name" class='form-control form-control-user font-weight-bold' placeholder="Enter your Campus name" value="{{ old('name') }}">
+                                            <select class="form-control form-control-user font-weight-bold" name="name">
+                                                <option>{{ old('name') }}</option>
+                                                @foreach ($campuses as $campus)
+                                                    <option>{{ $campus }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <label>Phone number</label>

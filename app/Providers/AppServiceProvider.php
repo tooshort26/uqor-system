@@ -46,6 +46,10 @@ class AppServiceProvider extends ServiceProvider
             });
         }
 
+        View::composer('campus.auth.register', function ($view) {
+            $view->with('campuses',['Tandag','Cantilan','San Miguel','Cagwait','Lianga','Tagbina','Bislig']);
+        });
+
         
     }
 }
