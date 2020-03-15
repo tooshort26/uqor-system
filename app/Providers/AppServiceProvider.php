@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Campus;
+use App\Role;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -45,6 +46,11 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('no_of_pending_submitted_forms', $no);
             });
         }
+
+        View::composer('campus.auth.register', function ($view) {
+            $view->with('roles',Role::get());
+            $view->with('campuses',['Tandag','Cantilan','San Miguel','Cagwait','Lianga','Tagbina','Bislig']);
+        });
 
         
     }

@@ -7,7 +7,9 @@
               <div class="col">
                 <div class="card card-small rounded-0">
                   <div class="card-header border-bottom">
-                    <h6 class="m-0">List of all registered campus</h6>
+                    <h6 class="m-0">
+                      List of all registered campus
+                    </h6>
                   </div>
                   <div class="card-body pb-3">
                     <table class="table table-hover table-bordered">
@@ -31,7 +33,8 @@
 	                      		<td>{{ $campus->address }}</td>
 	                      		<td>{{ $campus->created_at->format('F d, Y h:m A') }}</td>
                             <td>{{ $campus->updated_at->format('F d, Y h:m A') }}</td>
-	                      		<td class='text-center'><a class='btn btn-success' href="{{ route('campus.show', $campus->id) }}">View</a>
+	                      		<td class='text-center'>
+                                <a class='btn btn-success' href="{{ route('campus.show', $campus->id) }}">View</a>
 	                      		</td>
                           </tr>
 	                      	@empty
