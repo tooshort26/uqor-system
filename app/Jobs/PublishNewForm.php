@@ -41,7 +41,7 @@ class PublishNewForm implements ShouldQueue
             $formData['created_at'] = Carbon::parse($formData['created_at'])->format('F j, Y H:m A');
             $formData['deadline']   = Carbon::parse($formData['deadline'])->format('F j, Y H:m A');
 
-            $client->request('POST', config('socket.base_url') . '/upload/form/', [
+            $client->request('POST', config('socket.base_url') . 'upload/form/', [
                'form_params' => $formData
             ]);
         } catch (\Exception $e) {
