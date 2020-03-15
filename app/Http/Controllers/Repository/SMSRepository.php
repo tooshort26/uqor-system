@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers\Repository;
 
-use SMSGatewayMe\Client\ApiClient;
-use SMSGatewayMe\Client\Api\MessageApi;
-use SMSGatewayMe\Client\Configuration;
-use SMSGatewayMe\Client\Model\SendMessageRequest;
 
+use GuzzleHttp\Client;
 
 
 class SMSRepository
@@ -18,12 +15,8 @@ class SMSRepository
 
 	public function loadConfiguration()
 	{
-		// Configure client
-        $config = Configuration::getDefaultConfiguration();
-        $config->setApiKey('Authorization', config('sms.token'));
-        $apiClient = new ApiClient($config);
-        $this->messageClient = new MessageApi($apiClient);
-        return $this;
+		$this->client = new Client();
+		return $this;
 	}
 
 	public function registerPhoneNumbers(array $phoneNumbers)
@@ -35,11 +28,11 @@ class SMSRepository
 	public function buildMessage(string $message)
 	{
 		foreach ($this->phoneNumbers as $numbers) {
-			$this->messages[] = new SendMessageRequest([
-				'phoneNumber' => $numbers,
+			$this->messages[] = [
+				'phone_number' => $numbers,
                 'message' => $message,
                 'deviceId' => config('sms.deviceId'),
-			]);
+			];
 		}
 
 		return $this;

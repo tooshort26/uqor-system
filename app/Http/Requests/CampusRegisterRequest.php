@@ -24,11 +24,12 @@ class CampusRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:campuses',
-            'name' => 'required|unique:campuses',
+            'email'        => 'required|email|unique:campuses',
+            'name'         => 'required',
             'phone_number' => 'required|unique:campuses', 
-            'address' => 'required|min:6|max:50',
-            'password' => 'required|min:8|max:20|confirmed',
+            'address'      => 'required|min:6|max:50',
+            'role'         => 'required',
+            'password'     => 'required|min:8|max:20|confirmed',
         ];
     }
 }

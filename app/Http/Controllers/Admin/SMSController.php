@@ -4,23 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Campus;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Repository\SMSRepository;
 use App\Jobs\SendSMSJob;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use SMSGatewayMe\Client\ApiClient;
-use SMSGatewayMe\Client\Api\MessageApi;
-use SMSGatewayMe\Client\Configuration;
-use SMSGatewayMe\Client\Model\SendMessageRequest;
+use GuzzleHttp\Client;
 
 class SMSController extends Controller
 {
-    private $smsRepository;
 
-    public function __construct(SMSRepository $smsRepo)
+    public function __construct()
     {
+        $this->client = new Client();
         $this->middleware('auth:admin');
-        $this->smsRepository = $smsRepo;
     }
     /**
      * Display a listing of the resource.
@@ -58,7 +53,8 @@ class SMSController extends Controller
 
        // Convert phone numbers to array and split
        $phone_numbers = explode(',', $request->phone_numbers);
-       $job = (new SendSMSJob($this->smsRepository, $phone_numbers, $request->message))
+
+       $job = (new SendSMSJob($phone_numbers, $request->message))
                                 ->delay(now()->addSeconds(5));
        dispatch($job);
      

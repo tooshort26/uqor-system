@@ -80,7 +80,7 @@
           <tbody>
             @forelse($campusAccountRequest as $cCampus)
             <tr>
-              <td>{{ $cCampus->name }}</td>
+              <td>{{ $cCampus->name }}-{{ $cCampus->role }}</td>
               <td>{{ $cCampus->email }}</td>
               <td>{{ $cCampus->phone_number }}</td>
               <td>{{ $cCampus->address }}</td>

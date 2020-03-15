@@ -44,8 +44,8 @@
 
                                         <label>Campus Role</label>
                                         <div class="form-group">
-                                            <select class="form-control form-control-user font-weight-bold" name="name">
-                                                <option>{{ old('name') }}</option>
+                                            <select class="form-control form-control-user font-weight-bold" name="role">
+                                                <option>{{ old('role') }}</option>
                                                 @foreach ($roles as $role)
                                                     <option>{{ $role->name }}</option>
                                                 @endforeach

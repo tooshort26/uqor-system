@@ -69,7 +69,7 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar rounded-circle mr-2" src="{{ URL::asset('images/user_images/' . Auth::user()->profile) }}" alt="User Avatar">
-                    <span class="d-none d-md-inline-block text-capitialize">{{ Auth::user()->name }}</span>
+                    <span class="d-none d-md-inline-block text-capitialize">{{ Auth::user()->name }}-{{ Auth::user()->role }}</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
                     <a class="dropdown-item font-weight-bold" href="{{ route('campus.account.setting') }}">
